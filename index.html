@@ -54,6 +54,30 @@
     
     <!-- EmailJS for Email Notifications -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+	<!-- ICONS CODE -->
+<script> function removeFromLinks(rel) {
+for (link of document.head.getElementsByTagName("link")) {
+if (link.rel == rel) {
+document.head.removeChild(link);
+}
+};
+}
+function createNewFavicon(rel, img) {
+var newFavicon = document.createElement("link");
+newFavicon.type = "image/png";
+newFavicon.rel = rel;
+newFavicon.href = img;
+var firstHeadElement = document.head.firstChild;
+document.head.insertBefore(newFavicon, firstHeadElement);
+}
+removeFromLinks("icon");
+removeFromLinks("shortcut icon");
+removeFromLinks("apple-touch-icon");
+createNewFavicon("icon", "https://bucket.mlcdn.com/a/3336/3336910/images/16ecca0c74decc9e7fffd7c6d8b13dcbaf821311.png");
+createNewFavicon("shortcut icon", "https://bucket.mlcdn.com/a/3336/3336910/images/16ecca0c74decc9e7fffd7c6d8b13dcbaf821311.png");
+createNewFavicon("apple-touch-icon", "https://bucket.mlcdn.com/a/3336/3336910/images/16ecca0c74decc9e7fffd7c6d8b13dcbaf821311.png"); </script>
+<!-- End ICONS Code -->
     
     <style>
 
@@ -290,7 +314,7 @@
         <div class="p-6">
             <div class="mb-8">
                 <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-purple-600 rounded-lg flex items-center justify-center mb-4">
-                    <i data-lucide="wallet" class="w-6 h-6 text-white"></i>
+                    <i data-lucide="chart-no-axes-combined" class="w-6 h-6 text-white"></i>
                 </div>
                 <h1 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">
                     Financial Hub Pro 🎯
