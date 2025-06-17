@@ -312,6 +312,11 @@
                     <span class="font-medium">Calendar</span>
                     <i data-lucide="chevron-right" class="w-4 h-4 ml-auto"></i>
                 </a>
+                <a href="#" onclick="showSection('categories')" class="nav-item flex items-center px-3 py-2 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
+                    <i data-lucide="tags" class="w-4 h-4 mr-3"></i>
+                    <span class="font-medium">Categories</span>
+                    <i data-lucide="chevron-right" class="w-4 h-4 ml-auto"></i>
+                </a>
                 <a href="#" onclick="showSection('settings')" class="nav-item flex items-center px-3 py-2 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
                     <i data-lucide="settings" class="w-4 h-4 mr-3"></i>
                     <span class="font-medium">Settings</span>
@@ -392,6 +397,11 @@
                     <a href="#" onclick="showSection('calendar'); toggleMobileMenu()" class="mobile-nav-item flex items-center px-3 py-2 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
                         <i data-lucide="calendar" class="w-4 h-4 mr-3"></i>
                         <span class="font-medium">Calendar</span>
+                        <i data-lucide="chevron-right" class="w-4 h-4 ml-auto"></i>
+                    </a>
+                     <a href="#" onclick="showSection('categories'); toggleMobileMenu()" class="mobile-nav-item flex items-center px-3 py-2 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
+                        <i data-lucide="tags" class="w-4 h-4 mr-3"></i>
+                        <span class="font-medium">Categories</span>
                         <i data-lucide="chevron-right" class="w-4 h-4 ml-auto"></i>
                     </a>
                     <a href="#" onclick="showSection('settings'); toggleMobileMenu()" class="mobile-nav-item flex items-center px-3 py-2 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
@@ -513,10 +523,7 @@
                             <button onclick="showSection('transactions')" class="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium">View All</button>
                         </div>
                         <div id="recent-transactions" class="space-y-4">
-                            <div class="text-center py-8 text-gray-500 dark:text-gray-400">
-                                <i data-lucide="credit-card" class="w-12 h-12 mx-auto mb-4 opacity-50"></i>
-                                <p>No transactions yet. Add your first transaction to get started!</p>
-                            </div>
+                            {/* <!-- Recent transactions will be populated here --> */}
                         </div>
                     </div>
                     
@@ -526,10 +533,7 @@
                             <button onclick="openAddGoalModal()" class="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium">Add Goal</button>
                         </div>
                         <div id="financial-goals" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="text-center py-8 text-gray-500 dark:text-gray-400 col-span-full">
-                                <i data-lucide="target" class="w-12 h-12 mx-auto mb-4 opacity-50"></i>
-                                <p>No goals set yet. Add your first financial goal!</p>
-                            </div>
+                           {/* <!-- Financial goals will be populated here --> */}
                         </div>
                     </div>
                 </div>
@@ -622,13 +626,6 @@
                 </div>
             </div>
             
-            
-            
-            
-            
-            
-            
-
             <div id="budgets-section" class="content-section hidden fade-in">
                 <div class="max-w-7xl mx-auto">
                     <div class="flex items-center justify-between mb-8">
@@ -645,6 +642,39 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Categories Section -->
+            <div id="categories-section" class="content-section hidden fade-in">
+                <div class="max-w-7xl mx-auto">
+                    <div class="flex items-center justify-between mb-8">
+                        <div>
+                            <h1 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-2">Manage Categories</h1>
+                            <p class="text-lg text-gray-600 dark:text-gray-400">Create, edit, and delete your transaction categories</p>
+                        </div>
+                        <button onclick="openAddCategoryModal()" class="bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 flex items-center">
+                            <i data-lucide="plus" class="w-4 h-4 mr-2"></i> Add New Category
+                        </button>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table class="w-full" id="categories-list-table">
+                                <thead class="bg-gray-50 dark:bg-gray-900">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Name</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Type</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Color</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="categories-table-body" class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                                    <!-- Categories will be populated here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
             <div id="reports-section" class="content-section hidden fade-in">
                 <div class="max-w-7xl mx-auto">
@@ -666,9 +696,9 @@
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Report Type</label>
                                 <select id="report-type" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:text-white" onchange="generateReport()">
+                                    <option value="default">Default (Show All)</option>
                                     <option value="income-expense">Income vs Expenses</option>
                                     <option value="category-breakdown">Category Breakdown</option>
-                                    
                                 </select>
                             </div>
                             <div class="flex items-end">
@@ -679,13 +709,13 @@
                         </div>
                     </div>
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+                        <div id="income-expense-chart-container" class="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
                             <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Income vs Expenses</h3>
                             <div class="chart-container">
                                 <canvas id="income-expense-chart"></canvas>
                             </div>
                         </div>
-                        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+                        <div id="category-distribution-chart-container" class="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
                             <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Category Distribution</h3>
                             <div class="chart-container">
                                 <canvas id="category-distribution-chart"></canvas>
@@ -1062,6 +1092,51 @@
         </div>
     </div>
 
+    <!-- Add Category Modal -->
+    <div id="add-category-modal" class="fixed inset-0 z-[51] hidden overflow-y-auto">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-md w-full p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 id="category-modal-title" class="text-lg font-semibold text-gray-900 dark:text-white">Add Category</h3>
+                    <button onclick="closeModal('add-category-modal')" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                </div>
+                <form id="category-form" class="space-y-4">
+                    <div>
+                        <label for="category-name-modal" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Category Name</label>
+                        <input type="text" id="category-name-modal" placeholder="e.g., Groceries" required
+                               class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:text-white">
+                    </div>
+                    <div>
+                        <label for="category-type-modal" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Category Type</label>
+                        <select id="category-type-modal" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:text-white" required>
+                            <option value="expense">Expense</option>
+                            <option value="income">Income</option>
+                            <option value="transfer">Transfer</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="category-color-modal" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Color</label>
+                        <input type="color" id="category-color-modal" value="#3b82f6" 
+                               class="w-full h-10 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-primary-500 focus:border-primary-500">
+                    </div>
+                    <div class="flex justify-end space-x-3 pt-4">
+                        <button type="button" onclick="closeModal('add-category-modal')" 
+                                class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">
+                            Cancel
+                        </button>
+                        <button type="submit" id="category-form-submit-button"
+                                class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg">
+                            Add Category
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
     <div id="add-goal-modal" class="fixed inset-0 z-[51] hidden overflow-y-auto">
         <div class="flex items-center justify-center min-h-screen p-4">
             <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-md w-full p-6">
@@ -1296,7 +1371,9 @@ dateAdd(prop("Last Payment Date"), prop("Frequency"), "months")</div>
                     { id: 9, name: "Freelance", budget: 0, color: "#0ea5e9", type: "income" },
                     { id: 10, name: "Other Income", budget: 0, color: "#14b8a6", type: "income"},
                     { id: 11, name: "Other Expense", budget: 100, color: "#6b7280", type: "expense" },
-                    { id: 12, name: "Bills", budget: 500, color: "#f97316", type: "expense" } 
+                    { id: 12, name: "Bills", budget: 500, color: "#f97316", type: "expense" },
+                    { id: 13, name: "Transfer", budget: 0, color: "#64748b", type: "transfer" }, // Added Transfer category
+                    { id: 14, name: "Rainy Day", budget: 200, color: "#a3e635", type: "expense" } // Added Rainy Day
                 ];
             }
 
@@ -1369,14 +1446,12 @@ dateAdd(prop("Last Payment Date"), prop("Frequency"), "months")</div>
                 const oldTransaction = { ...this.transactions[index] };
                 const newTransaction = { ...oldTransaction, ...updates };
 
-                // Revert old transaction impact
                 const oldAccount = this.accounts.find(a => a.id === oldTransaction.account);
                 if (oldAccount) {
                     if (oldTransaction.type === 'expense') oldAccount.balance += Math.abs(oldTransaction.amount);
                     else if (oldTransaction.type === 'income') oldAccount.balance -= Math.abs(oldTransaction.amount);
                 }
 
-                // Apply new transaction impact
                 const newAccountInstance = this.accounts.find(a => a.id === newTransaction.account);
                 if (newAccountInstance) {
                     if (newTransaction.type === 'expense') newAccountInstance.balance -= Math.abs(newTransaction.amount);
@@ -1412,10 +1487,46 @@ dateAdd(prop("Last Payment Date"), prop("Frequency"), "months")</div>
             
             addCategory(category) {
                 category.id = Date.now();
-                category.type = category.type || 'expense';
+                category.type = category.type || 'expense'; 
+                category.budget = (typeof category.budget === 'number' && !isNaN(category.budget)) ? category.budget : 0;
                 this.categories.push(category);
                 this.saveToStorage('categories', this.categories);
                 return category;
+            }
+
+            updateCategory(id, updates) {
+                const index = this.categories.findIndex(c => c.id === id);
+                if (index !== -1) {
+                    if (updates.budget !== undefined) {
+                        updates.budget = (typeof updates.budget === 'number' && !isNaN(updates.budget)) ? updates.budget : (this.categories[index].budget || 0);
+                    }
+                    this.categories[index] = { ...this.categories[index], ...updates };
+                    this.saveToStorage('categories', this.categories);
+                    return this.categories[index];
+                }
+                return null;
+            }
+
+            deleteCategory(id) {
+                const categoryToDelete = this.categories.find(c => c.id === id);
+                if (!categoryToDelete) return false;
+
+                let confirmationMessage = `Are you sure you want to delete the category "${categoryToDelete.name}"?`;
+                if (categoryToDelete.budget > 0) {
+                     confirmationMessage += ` This category is used in budgets. Deleting it will remove it from budget tracking.`;
+                }
+                 const isUsedInTransactions = this.transactions.some(t => t.category === categoryToDelete?.name);
+                if (isUsedInTransactions) {
+                    confirmationMessage += ` This category is used in transactions, which will become uncategorized.`;
+                }
+
+                if (!confirm(confirmationMessage.trim())) {
+                    return false; 
+                }
+
+                this.categories = this.categories.filter(c => c.id !== id);
+                this.saveToStorage('categories', this.categories);
+                return true;
             }
             
             addGoal(goal) {
@@ -1505,6 +1616,16 @@ dateAdd(prop("Last Payment Date"), prop("Frequency"), "months")</div>
             initializeEmailJS();
             setupEmailNotificationToggle();
         }
+
+        function getNoDataHtml(iconName, message, buttonHtml = '') {
+            return `
+                <div class="text-center py-8 text-gray-500 dark:text-gray-400 col-span-full">
+                    <i data-lucide="${iconName}" class="w-12 h-12 mx-auto mb-4 opacity-50"></i>
+                    <p class="text-lg">${message}</p>
+                    ${buttonHtml}
+                </div>`;
+        }
+
 
         function formatCurrency(amount) {
             if (typeof amount !== 'number' || isNaN(amount)) {
@@ -1728,6 +1849,7 @@ dateAdd(prop("Last Payment Date"), prop("Frequency"), "months")</div>
                 case 'budgets': loadBudgets(); break;
                 case 'reports': loadReports(); break; 
                 case 'calendar': loadCalendar(); break;
+                case 'categories': loadCategoriesSectionData(); break; 
                 case 'settings': loadSettings(); showSettingsTab('general'); break;
             }
              if (['overview', 'reports'].includes(sectionName)) {
@@ -1737,7 +1859,7 @@ dateAdd(prop("Last Payment Date"), prop("Frequency"), "months")</div>
         }
 
         function loadAllData() {
-            loadOverviewData(); loadAccounts(); loadTransactions(); loadBudgets(); loadCalendar();
+            loadOverviewData(); loadAccounts(); loadTransactions(); loadBudgets(); loadCalendar(); loadCategoriesSectionData();
         }
         
         function toggleMobileMenu() {
@@ -1755,6 +1877,18 @@ dateAdd(prop("Last Payment Date"), prop("Frequency"), "months")</div>
         function openAddAccountModal() { showModal('add-account-modal'); }
         function openAddBudgetModal() { showModal('add-budget-modal'); }
         function openAddGoalModal() { showModal('add-goal-modal'); }
+        function openAddCategoryModal() {
+            document.getElementById('category-modal-title').textContent = 'Add Category';
+            document.getElementById('category-form-submit-button').textContent = 'Add Category';
+            const form = document.getElementById('category-form');
+            if (form) {
+                 form.reset(); 
+                 delete form.dataset.editId; 
+            }
+            document.getElementById('category-color-modal').value = '#3b82f6'; 
+            showModal('add-category-modal');
+        }
+
 
         function showModal(modalId) {
             document.getElementById('modal-backdrop').classList.remove('hidden');
@@ -1775,6 +1909,7 @@ dateAdd(prop("Last Payment Date"), prop("Frequency"), "months")</div>
             else if (modalId === 'add-account-modal') formIdToReset = 'account-form';
             else if (modalId === 'add-budget-modal') formIdToReset = 'budget-form';
             else if (modalId === 'add-goal-modal') formIdToReset = 'goal-form';
+            else if (modalId === 'add-category-modal') formIdToReset = 'category-form';
             
             if (formIdToReset) {
                 const formElement = document.getElementById(formIdToReset);
@@ -1801,9 +1936,8 @@ dateAdd(prop("Last Payment Date"), prop("Frequency"), "months")</div>
                 const accountLimitInput = document.getElementById('account-limit');
                 if (accountLimitInput) {
                     accountLimitInput.required = false;
-                    accountLimitInput.value = ''; // Explicitly clear value
+                    accountLimitInput.value = ''; 
                 }
-                // Explicitly clear other fields if form.reset() doesn't cover all cases for dynamic forms
                 const accountNameInput = document.getElementById('account-name'); if(accountNameInput) accountNameInput.value = '';
                 const accountTypeSelect = document.getElementById('account-type'); if(accountTypeSelect) accountTypeSelect.value = '';
                 const accountBankInput = document.getElementById('account-bank'); if(accountBankInput) accountBankInput.value = '';
@@ -1814,6 +1948,10 @@ dateAdd(prop("Last Payment Date"), prop("Frequency"), "months")</div>
             if (modalId === 'add-budget-modal') {
                  const budgetColorPicker = document.getElementById('budget-color');
                  if(budgetColorPicker) budgetColorPicker.value = '#DF1783';
+            }
+             if (modalId === 'add-category-modal') {
+                const categoryColorPicker = document.getElementById('category-color-modal');
+                if(categoryColorPicker) categoryColorPicker.value = '#3b82f6'; 
             }
         }
 
@@ -1862,7 +2000,7 @@ dateAdd(prop("Last Payment Date"), prop("Frequency"), "months")</div>
             container.innerHTML = ''; 
             const recent = financialData.transactions.sort((a,b) => new Date(b.date) - new Date(a.date)).slice(0,5);
             if (recent.length === 0) {
-                container.innerHTML = `<div class="text-center py-8 text-gray-500 dark:text-gray-400"><i data-lucide="credit-card" class="w-12 h-12 mx-auto mb-4 opacity-50"></i><p>No transactions yet.</p></div>`;
+                container.innerHTML = getNoDataHtml('list-checks', 'No transactions yet.');
             } else {
                 container.innerHTML = recent.map(t => {
                     const acc = financialData.accounts.find(a => a.id === t.account);
@@ -1878,7 +2016,7 @@ dateAdd(prop("Last Payment Date"), prop("Frequency"), "months")</div>
             const container = document.getElementById('financial-goals');
             container.innerHTML = ''; 
             if (!financialData.goals || financialData.goals.length === 0) {
-                container.innerHTML = `<div class="text-center py-8 text-gray-500 dark:text-gray-400 col-span-full"><i data-lucide="target" class="w-12 h-12 mx-auto mb-4 opacity-50"></i><p>No goals set yet.</p></div>`;
+                 container.innerHTML = getNoDataHtml('target', 'No goals set yet. Add your first financial goal!', `<button onclick="openAddGoalModal()" class="mt-4 bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-4 rounded-lg text-sm">Add Goal</button>`);
             } else {
                 container.innerHTML = financialData.goals.map(goal => {
                     const currentAmount = (typeof goal.current === 'number' && !isNaN(goal.current)) ? goal.current : 0;
@@ -1921,7 +2059,7 @@ dateAdd(prop("Last Payment Date"), prop("Frequency"), "months")</div>
             if (!container) return;
             container.innerHTML = ''; 
             if (!financialData.accounts || financialData.accounts.length === 0) {
-                container.innerHTML = `<div class="text-center py-12 text-gray-500 dark:text-gray-400 col-span-full"><i data-lucide="building-2" class="w-16 h-16 mx-auto mb-4 opacity-50"></i><p class="text-xl mb-2">No accounts yet</p><button onclick="openAddAccountModal()" class="mt-4 bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-4 rounded-lg">Add Account</button></div>`;
+                container.innerHTML = getNoDataHtml('landmark', 'No accounts yet. Add your first account!', `<button onclick="openAddAccountModal()" class="mt-4 bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-4 rounded-lg text-sm">Add Account</button>`);
             } else {
                 container.innerHTML = financialData.accounts.map(acc => {
                     const isCredit = acc.type === 'credit';
@@ -1939,21 +2077,18 @@ dateAdd(prop("Last Payment Date"), prop("Frequency"), "months")</div>
             
             const transactionTableCardHeader = document.querySelector('#transactions-section .bg-white .px-6.py-4.border-b');
             if (transactionTableCardHeader) {
-                // More robustly find and reset the h3, or reset the whole header if simpler
                 const titleElement = transactionTableCardHeader.querySelector('h3.text-lg');
                 if (titleElement) {
                     titleElement.textContent = 'All Transactions';
                 } else {
-                     // Fallback if h3 not found, reset entire header (less ideal but might catch edge cases)
                     transactionTableCardHeader.innerHTML = '<h3 class="text-lg font-semibold text-gray-900 dark:text-white">All Transactions</h3>';
                 }
             }
 
-
             tbody.innerHTML = ''; 
             const filteredTransactions = getFilteredTransactions(); 
             if (!filteredTransactions || filteredTransactions.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="6" class="px-6 py-12 text-center"><div class="text-gray-500 dark:text-gray-400"><i data-lucide="credit-card" class="w-12 h-12 mx-auto mb-4 opacity-50"></i><p class="text-lg mb-2">No transactions yet</p></div></td></tr>`;
+                 tbody.innerHTML = `<tr><td colspan="6">${getNoDataHtml('search-x', 'No transactions found. Try different filters or add new ones!', `<button onclick="openAddTransactionModal()" class="mt-4 bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-4 rounded-lg text-sm">Add Transaction</button>`)}</td></tr>`;
             } else {
                 tbody.innerHTML = filteredTransactions.map(t => {
                     const acc = financialData.accounts.find(a => a.id === t.account);
@@ -1971,7 +2106,7 @@ dateAdd(prop("Last Payment Date"), prop("Frequency"), "months")</div>
             container.innerHTML = ''; 
             const budgetableCategories = financialData.categories.filter(c => c.type === 'expense' && c.budget > 0);
             if (!budgetableCategories || budgetableCategories.length === 0) {
-                container.innerHTML = `<div class="text-center py-12 text-gray-500 dark:text-gray-400 col-span-full"><i data-lucide="pie-chart" class="w-16 h-16 mx-auto mb-4 opacity-50"></i><p class="text-xl mb-2">No budgets set</p><button onclick="openAddBudgetModal()" class="mt-4 bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-4 rounded-lg">Add Budget</button></div>`;
+                container.innerHTML = getNoDataHtml('pie-chart', 'No budgets set. Create your first budget!', `<button onclick="openAddBudgetModal()" class="mt-4 bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-4 rounded-lg text-sm">Add Budget</button>`);
             } else {
                 const currentDate = new Date();
                 container.innerHTML = budgetableCategories.map(cat => {
@@ -1984,6 +2119,59 @@ dateAdd(prop("Last Payment Date"), prop("Frequency"), "months")</div>
             }
              lucide.createIcons();
         }
+
+        function loadCategoriesSectionData() {
+            const tbody = document.getElementById('categories-table-body');
+            if (!tbody) return;
+            tbody.innerHTML = ''; 
+
+            if (!financialData.categories || financialData.categories.length === 0) {
+                 tbody.innerHTML = `<tr><td colspan="4">${getNoDataHtml('tags', 'No categories defined yet.', `<button onclick="openAddCategoryModal()" class="mt-2 bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-3 rounded-lg text-sm">Add New Category</button>`)}</td></tr>`;
+            } else {
+                financialData.categories.forEach(category => {
+                    const row = `
+                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">${category.name}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">${category.type.charAt(0).toUpperCase() + category.type.slice(1)}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="p-1.5 rounded-full" style="background-color: ${category.color}; display: inline-block; width: 20px; height: 20px; border: 1px solid ${isDarkMode ? '#4b5563' : '#e5e7eb'};"></span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 space-x-2">
+                                <button onclick="editCategory(${category.id})" class="text-primary-600 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300">Edit</button>
+                                <button onclick="handleDeleteCategory(${category.id})" class="text-danger-600 dark:text-danger-400 hover:text-danger-900 dark:hover:text-danger-300">Delete</button>
+                            </td>
+                        </tr>`;
+                    tbody.innerHTML += row;
+                });
+            }
+            lucide.createIcons();
+        }
+
+        function editCategory(id) {
+            const category = financialData.categories.find(c => c.id === id);
+            if (category) {
+                document.getElementById('category-modal-title').textContent = 'Edit Category';
+                document.getElementById('category-form-submit-button').textContent = 'Update Category';
+                document.getElementById('category-name-modal').value = category.name;
+                document.getElementById('category-type-modal').value = category.type;
+                document.getElementById('category-color-modal').value = category.color;
+                document.getElementById('category-form').dataset.editId = id;
+                showModal('add-category-modal');
+            } else {
+                showToast('Category not found for editing.', 'error');
+            }
+        }
+
+        function handleDeleteCategory(id) {
+            if (financialData.deleteCategory(id)) { 
+                loadCategoriesSectionData(); 
+                populateDropdowns();     
+                loadBudgets();           
+                initCharts();            
+                showToast('Category deleted successfully.', 'success');
+            }
+        }
+
 
         function loadReports() { generateReport(); } 
 
@@ -2007,7 +2195,7 @@ dateAdd(prop("Last Payment Date"), prop("Frequency"), "months")</div>
             }).sort((a,b) => new Date(a.date) - new Date(b.date));
 
             if (upcomingBillTransactions.length === 0) {
-                billsContainer.innerHTML = `<div class="text-center py-8 text-gray-500 dark:text-gray-400"><i data-lucide="calendar-x2" class="w-12 h-12 mx-auto mb-4 opacity-50"></i><p>No upcoming bills in the next 30 days.</p></div>`;
+                billsContainer.innerHTML = getNoDataHtml('calendar-x2', 'No upcoming bills in the next 30 days.');
             } else {
                 upcomingBillTransactions.forEach(bill => {
                     const amount = (typeof bill.amount === 'number' && !isNaN(bill.amount)) ? Math.abs(bill.amount) : 0;
@@ -2029,7 +2217,7 @@ dateAdd(prop("Last Payment Date"), prop("Frequency"), "months")</div>
             }).sort((a,b) => new Date(a.deadline) - new Date(b.deadline));
 
             if (upcomingGoals.length === 0) {
-                goalsContainer.innerHTML = `<div class="text-center py-8 text-gray-500 dark:text-gray-400"><i data-lucide="target" class="w-12 h-12 mx-auto mb-4 opacity-50"></i><p>No upcoming goal milestones.</p></div>`;
+                goalsContainer.innerHTML = getNoDataHtml('target', 'No upcoming goal milestones.');
             } else {
                 upcomingGoals.slice(0, 3).forEach(goal => { 
                     const current = (typeof goal.current === 'number' && !isNaN(goal.current)) ? goal.current : 0;
@@ -2139,10 +2327,9 @@ dateAdd(prop("Last Payment Date"), prop("Frequency"), "months")</div>
                 recurringOptionsDiv.classList.toggle('hidden', !recurringCheckbox.checked);
                 if(transaction.recurring) {
                    document.getElementById('transaction-frequency').value = transaction.frequency || 'monthly';
-                   // 'transaction-times' is for new recurring, not usually stored per instance
                 }
 
-                document.getElementById('transaction-form').dataset.editId = id;
+                document.getElementById('transaction-form').dataset.editId = transaction.id; 
                 showModal('add-transaction-modal');
             } else {
                 showToast('Transaction not found for editing.', 'error');
@@ -2197,32 +2384,6 @@ dateAdd(prop("Last Payment Date"), prop("Frequency"), "months")</div>
 
         function filterTransactions() { loadTransactions(); }
         
-        function drawNoDataMessage(ctx, message, iconName = 'alert-circle') {
-            if (!ctx) return;
-            const canvas = ctx.canvas;
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.save();
-            ctx.textAlign = 'center';
-            ctx.fillStyle = isDarkMode ? '#9ca3af' : '#6b7280'; // gray-400 / gray-500
-            
-            // Attempt to draw Lucide icon (simplified)
-            // This is a basic representation. Full Lucide rendering on canvas is complex.
-            // For a real solution, consider SVG overlay or pre-rendered icon images.
-            if (lucide[iconName]) {
-                 //This is a placeholder for icon drawing.
-                 //A proper canvas icon render would require parsing SVG paths from lucide.
-                 //For now, we'll just draw a simple shape or text.
-                 ctx.font = '30px sans-serif'; // Larger for icon placeholder
-                 // Placeholder for icon - you might use a unicode char or simple path
-                 // Example: ctx.fillText('⚠️', canvas.width / 2, canvas.height / 2 - 20); 
-            }
-
-            ctx.font = '14px sans-serif';
-            ctx.fillText(message, canvas.width / 2, canvas.height / 2 + (iconName ? 10 : 0));
-            ctx.restore();
-        }
-
-
         function initCharts() {
             initSpendingChart();
             initBudgetChart();
@@ -2235,17 +2396,11 @@ dateAdd(prop("Last Payment Date"), prop("Frequency"), "months")</div>
             const textColor = isDarkMode ? '#f9fafb' : '#1f2937';
             const gridColor = isDarkMode ? '#374151' : '#e5e7eb';
             const monthlySpending = []; const monthLabels = []; const currentDate = new Date();
-            let totalSpendingLast6Months = 0;
             for (let i = 5; i >= 0; i--) {
                 const month = new Date(currentDate.getFullYear(), currentDate.getMonth() - i, 1);
                 monthLabels.push(month.toLocaleDateString('en-US', { month: 'short' }));
                 const spending = financialData.transactions.filter(t => new Date(t.date + 'T00:00:00').getMonth() === month.getMonth() && new Date(t.date + 'T00:00:00').getFullYear() === month.getFullYear() && t.type === 'expense').reduce((sum, t) => sum + Math.abs(t.amount || 0), 0);
                 monthlySpending.push(spending);
-                totalSpendingLast6Months += spending;
-            }
-            if (financialData.transactions.length === 0 || totalSpendingLast6Months === 0) {
-                 drawNoDataMessage(ctx, "No spending data available for the last 6 months.", "trending-down");
-                 return;
             }
             charts.spending = new Chart(ctx, { type: 'line', data: { labels: monthLabels, datasets: [{ label: 'Expenses', data: monthlySpending, borderColor: '#DF1783', backgroundColor: 'rgba(223, 23, 131, 0.1)', tension: 0.4, fill: true }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: textColor }}}, scales: { x: { grid: { color: gridColor }, ticks: { color: textColor }}, y: { grid: { color: gridColor }, ticks: { color: textColor, callback: value => formatCurrency(value) }}} }});
         }
@@ -2256,10 +2411,6 @@ dateAdd(prop("Last Payment Date"), prop("Frequency"), "months")</div>
             if (charts.budget) charts.budget.destroy();
             const textColor = isDarkMode ? '#f9fafb' : '#1f2937';
             const budgetableCategories = financialData.categories.filter(c => c.type === 'expense' && c.budget > 0);
-            if (budgetableCategories.length === 0) {
-                drawNoDataMessage(ctx, "No budget data to display. Please add budgets.", "pie-chart");
-                return;
-            }
             charts.budget = new Chart(ctx, { type: 'doughnut', data: { labels: budgetableCategories.map(c => c.name), datasets: [{ data: budgetableCategories.map(c => c.budget || 0), backgroundColor: budgetableCategories.map(c => c.color || '#cccccc'), borderWidth: 2, borderColor: isDarkMode ? '#1f2937' : '#ffffff' }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: textColor, padding: 20 }}} }});
         }
         
@@ -2286,14 +2437,11 @@ dateAdd(prop("Last Payment Date"), prop("Frequency"), "months")</div>
             const labels = [];
             const incomeData = [];
             const expenseData = [];
-            let totalIncome = 0;
-            let totalExpenses = 0;
 
             if (reportPeriod === 'month' || reportPeriod === 'quarter' || reportPeriod === 'year') {
                 let tempDate = new Date(startDate);
                 while(tempDate <= endDate) {
-                    const monthKey = tempDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric'});
-                    if (!labels.includes(monthKey)) labels.push(monthKey);
+                    const monthKey = tempDate.toLocaleDateString('en-US', { month: 'short', year: (reportPeriod === 'year' || (labels.length > 0 && new Date(labels[labels.length-1]).getFullYear() !== tempDate.getFullYear())) ? 'numeric' : undefined });
                     
                     let monthIncome = 0;
                     let monthExpenses = 0;
@@ -2306,26 +2454,21 @@ dateAdd(prop("Last Payment Date"), prop("Frequency"), "months")</div>
                         }
                     });
                     
-                    const labelIndex = labels.indexOf(monthKey);
-                    if(incomeData[labelIndex] === undefined) incomeData[labelIndex] = 0;
-                    if(expenseData[labelIndex] === undefined) expenseData[labelIndex] = 0;
+                    const existingLabelIndex = labels.indexOf(monthKey);
+                    if(existingLabelIndex === -1) {
+                        labels.push(monthKey);
+                        incomeData.push(monthIncome);
+                        expenseData.push(monthExpenses);
+                    } else {
+                        incomeData[existingLabelIndex] += monthIncome;
+                        expenseData[existingLabelIndex] += monthExpenses;
+                    }
                     
-                    incomeData[labelIndex] += monthIncome;
-                    expenseData[labelIndex] += monthExpenses;
-                    totalIncome += monthIncome;
-                    totalExpenses += monthExpenses;
-
+                    if (reportPeriod === 'month' && tempDate.getMonth() === endDate.getMonth() && tempDate.getFullYear() === endDate.getFullYear()) break;
                     tempDate.setMonth(tempDate.getMonth() + 1);
-                     if (reportPeriod === 'month' && tempDate > endDate) break; // Only one month for "This Month"
+                     if (tempDate > endDate && !(tempDate.getMonth() === endDate.getMonth() && tempDate.getFullYear() === endDate.getFullYear())) break;
                 }
             }
-
-
-            if (totalIncome === 0 && totalExpenses === 0) {
-                 drawNoDataMessage(ctx, "No income/expense data for this period.", "bar-chart-2");
-                 return;
-            }
-
             charts.incomeExpense = new Chart(ctx, { type: 'bar', data: { labels, datasets: [ { label: 'Income', data: incomeData, backgroundColor: '#10b981' }, { label: 'Expenses', data: expenseData, backgroundColor: '#DF1783' } ]}, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: textColor }}}, scales: { x: { grid: { color: gridColor }, ticks: { color: textColor }}, y: { grid: { color: gridColor }, ticks: { color: textColor, callback: value => formatCurrency(value) }}} }});
         }
 
@@ -2350,12 +2493,10 @@ dateAdd(prop("Last Payment Date"), prop("Frequency"), "months")</div>
             const categorySpending = {};
             financialData.categories.filter(c => c.type === 'expense').forEach(c => categorySpending[c.name] = 0);
             
-            let totalSpentInPeriod = 0;
             financialData.transactions.forEach(t => {
                 const tDate = new Date(t.date + "T00:00:00");
                 if (t.type === 'expense' && tDate >= startDate && tDate <= endDate && categorySpending.hasOwnProperty(t.category)) {
                     categorySpending[t.category] += Math.abs(t.amount || 0);
-                    totalSpentInPeriod += Math.abs(t.amount || 0);
                 }
             });
             
@@ -2363,23 +2504,30 @@ dateAdd(prop("Last Payment Date"), prop("Frequency"), "months")</div>
             const data = labels.map(cat => categorySpending[cat]);
             const colors = labels.map(catName => financialData.categories.find(c => c.name === catName)?.color || '#cccccc');
 
-            if (totalSpentInPeriod === 0) {
-                 drawNoDataMessage(ctx, "No category spending for this period.", "pie-chart");
-                 return;
-            }
-
             charts.categoryDistribution = new Chart(ctx, { type: 'pie', data: { labels, datasets: [{ data, backgroundColor: colors, borderWidth: 2, borderColor: isDarkMode ? '#1f2937' : '#ffffff' }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: textColor, padding: 20 }}} }});
         }
         
         function generateReport() {
             const reportType = document.getElementById('report-type').value;
-            document.getElementById('income-expense-chart').parentElement.parentElement.classList.toggle('hidden', reportType !== 'income-expense');
-            document.getElementById('category-distribution-chart').parentElement.parentElement.classList.toggle('hidden', reportType !== 'category-breakdown');
+            const incomeExpenseContainer = document.getElementById('income-expense-chart-container');
+            const categoryDistContainer = document.getElementById('category-distribution-chart-container');
 
-            if (reportType === 'income-expense') initIncomeExpenseChart();
-            else if (reportType === 'category-breakdown') initCategoryDistributionChart();
+            if (reportType === 'default') {
+                if(incomeExpenseContainer) incomeExpenseContainer.classList.remove('hidden');
+                if(categoryDistContainer) categoryDistContainer.classList.remove('hidden');
+                initIncomeExpenseChart();
+                initCategoryDistributionChart();
+            } else if (reportType === 'income-expense') {
+                if(incomeExpenseContainer) incomeExpenseContainer.classList.remove('hidden');
+                if(categoryDistContainer) categoryDistContainer.classList.add('hidden');
+                initIncomeExpenseChart();
+            } else if (reportType === 'category-breakdown') {
+                if(incomeExpenseContainer) incomeExpenseContainer.classList.add('hidden');
+                if(categoryDistContainer) categoryDistContainer.classList.remove('hidden');
+                initCategoryDistributionChart();
+            }
             
-            if (currentSection === 'reports') { // Only show toast if actively on reports page
+            if (currentSection === 'reports') {
                  showToast('Report generated successfully!');
             }
         }
@@ -2406,14 +2554,13 @@ dateAdd(prop("Last Payment Date"), prop("Frequency"), "months")</div>
             reader.onload = function(e) {
                 try {
                     const csv = e.target.result; const lines = csv.split('\n');
-                    // Basic CSV parsing
                     for (let i = 1; i < lines.length; i++) {
                         const data = lines[i].split(',');
                         if (data.length >= 6) {
                             const accountName = data[4].trim();
                             let account = financialData.accounts.find(a => a.name === accountName);
-                            if (!account && financialData.accounts.length > 0) account = financialData.accounts[0]; // Default to first if not found
-                            else if (!account) { /* Optionally create a default account or skip */ continue; }
+                            if (!account && financialData.accounts.length > 0) account = financialData.accounts[0]; 
+                            else if (!account) { continue; }
 
                             financialData.addTransaction({ date: data[0], type: data[1], description: data[2], category: data[3], account: account.id, amount: parseFloat(data[5]) });
                         }
@@ -2445,7 +2592,8 @@ dateAdd(prop("Last Payment Date"), prop("Frequency"), "months")</div>
                 const date = document.getElementById('transaction-date').value;
 
                 if (!amount || !description || !accountId || !date || !category) { showToast('Please fill all required fields.', 'error'); return; }
-                const editId = this.dataset.editId ? parseFloat(this.dataset.editId) : null;
+                const editIdStr = this.dataset.editId;
+                const editId = editIdStr ? parseFloat(editIdStr) : null;
                 const isRecurring = document.getElementById('transaction-recurring').checked;
                 const signedAmount = type === 'expense' ? -Math.abs(amount) : Math.abs(amount);
 
@@ -2545,17 +2693,17 @@ dateAdd(prop("Last Payment Date"), prop("Frequency"), "months")</div>
                 const editId = this.dataset.editId ? parseInt(this.dataset.editId) : null;
                 let categoryToUpdate = financialData.categories.find(c => c.id === editId || c.name.toLowerCase() === categoryName.toLowerCase());
 
-                if (editId && categoryToUpdate) { // Editing existing
-                    categoryToUpdate.name = categoryName; // Allow name change if ID matches
+                if (editId && categoryToUpdate) { 
+                    categoryToUpdate.name = categoryName; 
                     categoryToUpdate.budget = budgetAmount;
                     categoryToUpdate.color = budgetColor;
-                    categoryToUpdate.type = 'expense'; // Budgets are for expenses
+                    categoryToUpdate.type = 'expense'; 
                      financialData.saveToStorage('categories', financialData.categories);
                     showToast('Budget updated successfully!');
-                } else if (!editId && categoryToUpdate && categoryToUpdate.name.toLowerCase() === categoryName.toLowerCase()){ // Trying to add existing name
+                } else if (!editId && categoryToUpdate && categoryToUpdate.name.toLowerCase() === categoryName.toLowerCase()){ 
                      showToast('A budget category with this name already exists. Please use a different name or edit the existing one.', 'error');
                      return;
-                } else { // Adding new
+                } else { 
                     financialData.addCategory({ name: categoryName, budget: budgetAmount, color: budgetColor, type: 'expense' });
                     showToast('Budget added successfully!');
                 }
@@ -2578,11 +2726,49 @@ dateAdd(prop("Last Payment Date"), prop("Frequency"), "months")</div>
                 showToast('Financial goal added!');
                 loadAllData(); closeModal('add-goal-modal');
             });
+
+            document.getElementById('category-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('category-name-modal').value.trim();
+                const type = document.getElementById('category-type-modal').value;
+                const color = document.getElementById('category-color-modal').value;
+
+                if (!name || !type) {
+                    showToast('Category Name and Type are required.', 'error');
+                    return;
+                }
+
+                const editId = this.dataset.editId ? parseInt(this.dataset.editId) : null;
+                const existingCategoryByName = financialData.categories.find(c => c.name.toLowerCase() === name.toLowerCase() && c.id !== editId);
+
+                if (existingCategoryByName) {
+                    showToast('A category with this name already exists.', 'error');
+                    return;
+                }
+                
+                const categoryData = { name, type, color, budget: 0 }; 
+
+                if (editId) {
+                    const originalCategory = financialData.categories.find(c => c.id === editId);
+                    if (originalCategory) categoryData.budget = originalCategory.budget; 
+                    financialData.updateCategory(editId, categoryData);
+                    showToast('Category updated successfully!');
+                } else {
+                    financialData.addCategory(categoryData);
+                    showToast('Category added successfully!');
+                }
+                loadCategoriesSectionData();
+                populateDropdowns();
+                loadBudgets(); 
+                initCharts(); 
+                closeModal('add-category-modal');
+            });
+
         }
 
         function formatDate(dateString) {
             if (!dateString) return 'N/A';
-            const date = new Date(dateString + 'T00:00:00'); // Ensure parsed as local
+            const date = new Date(dateString + 'T00:00:00'); 
             const format = financialData.settings.dateFormat || 'MM/DD/YYYY';
             const options = {};
             if (format === 'DD/MM/YYYY') { return date.toLocaleDateString('en-GB'); }
@@ -2601,33 +2787,43 @@ dateAdd(prop("Last Payment Date"), prop("Frequency"), "months")</div>
         }
 
         function populateDropdowns() {
-            const categorySelects = document.querySelectorAll('#transaction-category, #transaction-category-filter');
+            const transactionCategorySelect = document.getElementById('transaction-category');
+            const transactionCategoryFilterSelect = document.getElementById('transaction-category-filter');
             const accountSelects = document.querySelectorAll('#transaction-account, #transaction-account-filter');
             
-            const incomeCategories = financialData.categories.filter(c => c.type === 'income').map(c => `<option value="${c.name}">${c.name}</option>`).join('');
-            const expenseCategories = financialData.categories.filter(c => c.type === 'expense').map(c => `<option value="${c.name}">${c.name}</option>`).join('');
+            const incomeCategories = financialData.categories.filter(c => c.type === 'income');
+            const expenseCategories = financialData.categories.filter(c => c.type === 'expense');
+            const transferCategory = financialData.categories.find(c => c.type === 'transfer');
 
-            categorySelects.forEach(select => {
-                if (select) {
-                    const currentValue = select.value;
-                    if (select.id === 'transaction-category') { // For the modal, populate based on transaction type
-                         const transactionType = document.getElementById('transaction-type')?.value;
-                         select.innerHTML = '<option value="">Select Category</option>';
-                         if (transactionType === 'income') select.innerHTML += incomeCategories;
-                         else if (transactionType === 'expense') select.innerHTML += expenseCategories;
-                         else { // for transfer or if type not set yet, show all non-budget expense cats + income cats
-                            select.innerHTML += expenseCategories + incomeCategories;
-                         }
-                    } else { // For the filter, show all
-                        select.innerHTML = '<option value="">All Categories</option>' + expenseCategories + incomeCategories;
-                    }
-                    select.value = currentValue;
+            if (transactionCategorySelect) {
+                const currentTransactionType = document.getElementById('transaction-type')?.value;
+                const currentValue = transactionCategorySelect.value;
+                transactionCategorySelect.innerHTML = '<option value="">Select Category</option>';
+                if (currentTransactionType === 'income') {
+                    incomeCategories.forEach(c => transactionCategorySelect.innerHTML += `<option value="${c.name}">${c.name}</option>`);
+                } else if (currentTransactionType === 'expense') {
+                    expenseCategories.forEach(c => transactionCategorySelect.innerHTML += `<option value="${c.name}">${c.name}</option>`);
+                } else if (currentTransactionType === 'transfer' && transferCategory) {
+                    transactionCategorySelect.innerHTML += `<option value="${transferCategory.name}">${transferCategory.name}</option>`;
+                } else { 
+                    [...incomeCategories, ...expenseCategories].forEach(c => transactionCategorySelect.innerHTML += `<option value="${c.name}">${c.name}</option>`);
                 }
-            });
-             // Listener for transaction type change in modal to update category dropdown
+                transactionCategorySelect.value = currentValue;
+            }
+
+            if (transactionCategoryFilterSelect) {
+                const currentValue = transactionCategoryFilterSelect.value;
+                transactionCategoryFilterSelect.innerHTML = '<option value="">All Categories</option>';
+                [...financialData.categories].sort((a,b) => a.name.localeCompare(b.name)).forEach(c => {
+                    transactionCategoryFilterSelect.innerHTML += `<option value="${c.name}">${c.name}</option>`;
+                });
+                transactionCategoryFilterSelect.value = currentValue;
+            }
+            
             const transactionTypeDropdown = document.getElementById('transaction-type');
-            if (transactionTypeDropdown) {
-                transactionTypeDropdown.addEventListener('change', () => populateDropdowns()); // Re-populate when type changes
+            if (transactionTypeDropdown && !transactionTypeDropdown.dataset.listenerAttached) {
+                transactionTypeDropdown.addEventListener('change', populateDropdowns); 
+                transactionTypeDropdown.dataset.listenerAttached = 'true';
             }
 
             accountSelects.forEach(select => {
